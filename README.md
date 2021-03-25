@@ -1,6 +1,6 @@
 # ipfailover
 
-create ipfailover resources in OpenShift 4.x
+Create ipfailover resources in OpenShift 4.x
 
 ```
 
@@ -12,7 +12,9 @@ $ oc adm policy add-scc-to-user privileged -z ipfailover
 $ oc create -f https://raw.githubusercontent.com/lihongan/ipfailover/main/dc-ipfailover.yaml
 
 ```
-ensure a rule to iptables chain INPUT to accept 224.0.0.28 multicast packets
+Note: ipfailover/VRRP uses multicast by default, but multicast is not allowed in many Cloud Platforms, so please use Unicast instead for your testing.
+
+To use multicast, ensure below rule is added to iptables INPUT chain.
 ```
 -A INPUT -d 224.0.0.18/32 -j ACCEPT
 ```
