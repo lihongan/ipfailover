@@ -32,7 +32,7 @@ spec:
         - name: OPENSHIFT_HA_IPTABLES_CHAIN
           value: INPUT
         - name: OPENSHIFT_HA_MONITOR_PORT
-          value: "80"
+          value: "8080"
         - name: OPENSHIFT_HA_NETWORK_INTERFACE
         - name: OPENSHIFT_HA_NOTIFY_SCRIPT
         - name: OPENSHIFT_HA_PREEMPTION
