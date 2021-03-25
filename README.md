@@ -4,11 +4,12 @@ create ipfailover resources in OpenShift 4.x
 
 ```
 
-# oc adm policy add-scc-to-user privileged -z ipfailover
+### create ServiceAccount ipfailover and update clusterrole.
+$ oc create sa ipfailover
+$ oc adm policy add-scc-to-user privileged -z ipfailover
 
-# create ServiceAccount ipfailover
-
-# create deploymentconfig (3.x style) or deployment
+### create deploymentconfig (3.x style) or deployment
+$ oc create -f https://raw.githubusercontent.com/lihongan/ipfailover/main/dc-ipfailover.yaml
 
 ```
 ensure a rule to iptables chain INPUT to accept 224.0.0.28 multicast packets
