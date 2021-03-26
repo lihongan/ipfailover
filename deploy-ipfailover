@@ -10,7 +10,8 @@ spec:
   replicas: 3
   revisionHistoryLimit: 10
   selector:
-    ipfailover: ipfailover
+    matchLabels:
+      ipfailover: ipfailover
   strategy:
     activeDeadlineSeconds: 21600
     recreateParams:
