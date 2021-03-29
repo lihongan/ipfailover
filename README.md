@@ -8,7 +8,10 @@ Create ipfailover resources in OpenShift 4.x
 $ oc create sa ipfailover
 $ oc adm policy add-scc-to-user privileged -z ipfailover
 
-### create ipfailover DeploymentConfig (v3.x style)
+### create ipfailover by Deployment
+$ oc create -f https://raw.githubusercontent.com/lihongan/ipfailover/main/deploy-ipfailover.yaml
+
+### In v3.11 version, ipfailover is created by DeploymentConfig, run below command instead above if you'd like to check it.
 $ oc create -f https://raw.githubusercontent.com/lihongan/ipfailover/main/dc-ipfailover.yaml
 
 ```
