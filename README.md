@@ -11,10 +11,8 @@ $ oc adm policy add-scc-to-user privileged -z ipfailover
 ### create ipfailover by Deployment
 $ oc create -f https://raw.githubusercontent.com/lihongan/ipfailover/main/deploy-ipfailover.yaml
 
-### In v3.11 version, ipfailover is created by DeploymentConfig, run below command instead above if you'd like to check it.
-$ oc create -f https://raw.githubusercontent.com/lihongan/ipfailover/main/dc-ipfailover.yaml
-
 ```
+
 Note: ipfailover/VRRP uses multicast by default, but multicast is not allowed in many Cloud Platforms, so please use Unicast instead for your testing.
 
 To use multicast, ensure below rule is added to iptables INPUT chain.
