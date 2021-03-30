@@ -24,7 +24,7 @@ $ cat /etc/keepalived/keepalived.conf
 
 ### Reconfigure the ipfailover by updating the ENV. 
 ### e.g. change the virtual IP to use 192.168.10.10 and 192.168.10.11. 
-$ oc set env dc/ipfailover OPENSHIFT_HA_VIRTUAL_IPS=192.168.10.10-11
+$ oc set env deploy/ipfailover OPENSHIFT_HA_VIRTUAL_IPS=192.168.10.10-11
 
 more Environment variables please see:
 https://docs.openshift.com/container-platform/3.11/admin_guide/high_availability.html#options-environment-variables
@@ -45,10 +45,10 @@ To use multicast, ensure below rule is added to iptables INPUT chain.
 $ oc get node -o wide
 
 ### Specify node's IP as unicast peers
-$ oc set env dc/ipfailover OPENSHIFT_HA_UNICAST_PEERS="10.0.152.208,10.0.183.251,10.0.219.207"
+$ oc set env deploy/ipfailover OPENSHIFT_HA_UNICAST_PEERS="10.0.152.208,10.0.183.251,10.0.219.207"
 
 ### Please skip below, seems default "false" works as well
-$ oc set env dc/ipfailover OPENSHIFT_HA_USE_UNICAST="true"                                         
+$ oc set env deploy/ipfailover OPENSHIFT_HA_USE_UNICAST="true"                                         
 
 ### capture the vrrp unicast packets on nodes.
 # tcpdump -i any vrrp -nn
