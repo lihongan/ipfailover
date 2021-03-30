@@ -26,10 +26,11 @@ $ cat /etc/keepalived/keepalived.conf
 ### e.g. change the virtual IP to use 192.168.10.10 and 192.168.10.11. 
 $ oc set env deploy/ipfailover OPENSHIFT_HA_VIRTUAL_IPS=192.168.10.10-11
 
+```
+
 more Environment variables please see:
 https://docs.openshift.com/container-platform/3.11/admin_guide/high_availability.html#options-environment-variables
 
-```
 
 Note: ipfailover/VRRP uses multicast by default, but multicast is not allowed in many Cloud Platforms, so please use Unicast instead for your testing.
 
