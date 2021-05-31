@@ -2,16 +2,22 @@
 
 ### Two types of monitoring appliacation
 1. Use hostNetwork:
+
 Application pods working with hostNetwork node, since ipfailover pods working with hostNetwork mode as well so they are in same network namespace and ipfailover can monitor the application port directly, so needn't to create a nodePort service for the application. And we can trigger the failover by restarting the node as well as the application pod.
 
-2. Use Nodeport:
+2. Use Nodeport
+
 Application pods working with pods networking mode, since ipfailover pods working with hostNetwork mode so they are in different network namespace, to make ipfailover can monitor the port we have to create a NodePort service for the application pods. But because nodeport is always alive/reachable on all nodes, so ipfailover checking scripts always return true and we should trigger a failover by reboot the node (block MASTER instance to send VRRP packets) 
 
 ### When failover ocuurs
-1. MASTER cannot reach the monitor port 
+1. MASTER cannot reach the monitor port
+
+
 If MASTER cannot reach the port that it monitored, then it will enter FAULT state immediately and remove the Virtual IP from the Interface and stop sending multicast/unicast VRRP packets.
 
 2. BACKUP cannot receive VRRP packets from MASTER
+
+
 If ipfailover can reach the monitored port then it will enter BACKUP state initially and start sending multicast/unicast VRRP packets, only the BACKUP with highest priority becomes the MASTER. If BACKUP doesn't receive the VRRP packets from MASTER for a period longer than three times of the advertisement timer, the BACKUP takes the MASTER state and assigns the VIP(s) to itself.
 
 note: If two ipfailover instances don't see each other (e.g. multicast VRRP packets are blocked), both will have the MASTER state and both will carry the same VIP(s), that's and issue should be solved. 
