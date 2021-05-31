@@ -20,7 +20,7 @@ If MASTER cannot reach the port that it monitored, then it will enter FAULT stat
 
 If ipfailover can reach the monitored port then it will enter BACKUP state initially and start sending multicast/unicast VRRP packets, only the BACKUP with highest priority becomes the MASTER. If BACKUP doesn't receive the VRRP packets from MASTER for a period longer than three times of the advertisement timer, the BACKUP takes the MASTER state and assigns the VIP(s) to itself.
 
-note: If two ipfailover instances don't see each other (e.g. multicast VRRP packets are blocked), both will have the MASTER state and both will carry the same VIP(s), that's and issue should be solved. 
+note: If two ipfailover instances don't see each other (e.g. prefer multicast but multicast packets are not allowed on the platform), both will have the MASTER state and both will carry the same VIP(s), that's an issue should be solved. 
 
 ### How to observe failover
 Tips:
