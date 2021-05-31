@@ -5,7 +5,7 @@
 Application pods working with hostNetwork node, since ipfailover pods working with hostNetwork mode as well so they are in same network namespace and ipfailover can monitor the application port directly, so needn't to create a nodePort service for the application. And we can trigger the failover by restarting the node as well as the application pod.
 
 2. Use Nodeport:
-Application pods working with pods networking mode, since ipfailover pods working with hostNetwork mode so they are in different network namespace, to make ipfailover can monitor the port we have to create a NodePort service for the application pods. But because nodeport is always alive/reachable on all nodes, so ipfailover checking scripts always return true and we should trigger a failover by reboot the node (block ipfailover to send keepalive/heartbeat packets) 
+Application pods working with pods networking mode, since ipfailover pods working with hostNetwork mode so they are in different network namespace, to make ipfailover can monitor the port we have to create a NodePort service for the application pods. But because nodeport is always alive/reachable on all nodes, so ipfailover checking scripts always return true and we should trigger a failover by reboot the node (block MASTER instance to send VRRP packets) 
 
 ### When failover ocuurs
 1. MASTER cannot reach the monitor port 
